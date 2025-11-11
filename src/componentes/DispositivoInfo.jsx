@@ -4,7 +4,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 export const DispositivoInfo = ({ dispositivo, volver }) => {
   const [encendido, setEncendido] = useState(dispositivo.estado === 'encendido');
 
-  // Datos ficticios de consumo mensual (solo se generan una vez)
   const [data] = useState(() => 
     [
         { mes: 'Ene', consumo: Math.floor(Math.random() * 10 + 10) },
@@ -17,7 +16,7 @@ export const DispositivoInfo = ({ dispositivo, volver }) => {
   );
 
   return (
-    <div className="flex flex-col items-center mt-10 w-[90%] mx-auto text-center">
+    <div className="flex flex-col items-center w-[90%] mx-auto text-center flex-1 overflow-y-auto pb-4"> {/* Cambios importantes aquí */}
       <h2 className="text-2xl mb-5">{dispositivo.nombre}</h2>
       <img src={dispositivo.icon} alt={dispositivo.nombre} className="h-32 mb-2" />
 
@@ -34,7 +33,6 @@ export const DispositivoInfo = ({ dispositivo, volver }) => {
         </ResponsiveContainer>
       </div>
 
-      {/* Texto debajo de la gráfica, más suave */}
       <span className="text-sm text-gray-300 mb-4">Gasto mensual</span>
 
       <p className="text-sm">Consumo mensual: {dispositivo.consumo} kWh</p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dispositivos } from './Dispositivos';
 import { Home } from './Home';
 import { Perfil } from './Perfil';
@@ -7,6 +7,14 @@ import { DispositivoInfo } from './DispositivoInfo';
 export const Body = ({ seccion }) => {
   const [vista, setVista] = useState("lista");
   const [seleccionado, setSeleccionado] = useState(null);
+
+  // 🔄 Resetear la vista cuando cambia la sección principal
+  useEffect(() => {
+    if (seccion.toLowerCase() !== "dispositivos") {
+      setVista("lista");
+      setSeleccionado(null);
+    }
+  }, [seccion]);
 
   // 👉 Si estás en la vista de detalle de un dispositivo
   if (vista === "detalle") {
